@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="stylesheet" href="style.css">
-  <title>Frontend Mentor | Weather app</title>
-</head>
-<body>
-  <header>
-    <img class = logo src="./assets/images/logo.svg" alt="Weather Now Logo">
-    <p class = head-text> How's the sky looking today ?</p>
-  </header>
-  <main>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Frontend Mentor | Weather app</title>
+  </head>
+  <body>
+    <header>
+      <!-- Logo and Heading -->
+      <img class="logo" src="./assets/images/logo.svg" alt="Weather Now Logo" />
+      <h1 class="head-text">How's the sky looking today ?</h1>
+    </header>
+    <main>
+      <!-- Search Bar -->
+      <form class="search-bar">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search for a place..."
+        />
+        <button class="search-btn">
+          <img src="./assets/images/icon-search.svg" alt="Search Icon" />
+        </button>
+      </form>
 
-  </main>
-  
-  <footer>
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="https://github.com/Arvindh99">Arvindh</a>.
-  </div>
-  </footer>
-</body>
+      <!-- Weather Background Image -->
+      <img
+        class="weather-bg"
+        src="./assets/images/bg-today-large.svg"
+        alt="Background Image"
+      />
+    </main>
+
+    <footer>
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a
+        >. Coded by <a href="https://github.com/Arvindh99">Arvindh</a>.
+      </div>
+    </footer>
+  </body>
 </html>
