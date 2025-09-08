@@ -1,22 +1,21 @@
 @font-face {
   font-family: "BricolageGrotesque";
-  src: url("fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf")
-    format("truetype");
+  src: url("fonts/BricolageGrotesque-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
-  font-family: "DMSans-Italic";
-  src: url("fonts/DMSans-Italic-VariableFont_opsz,wght.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "DMSans-Variable";
-  src: url("fonts/DMSans-VariableFont_opsz,wght.ttf") format("truetype");
+  font-family: "DMSans";
+  src: url("fonts/DMSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
 }
 
 body {
   background-color: #02012b;
   color: white;
+  font-family: "DMSans", sans-serif;
 }
 
 .logo {
@@ -26,8 +25,27 @@ body {
 }
 
 .head-text {
-  font-family: "BricolageGrotesque-Variable", sans-serif;
-  font-size: 30px;
+  font-family: "BricolageGrotesque-Bold", sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  border: 1px solid white;
+}
+
+.weather-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-bottom: 50px;
 }
 
 .attribution {
