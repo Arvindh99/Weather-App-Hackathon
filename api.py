@@ -13,8 +13,7 @@ def get_lat_lon(city_name):
     
 def get_current_weather(lat, lon):
     url = (
-        f"https://api.open-meteo.com/v1/forecast?"
-        f"latitude={lat}&longitude={lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m"
+        f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m"
     )
     response = requests.get(url)
     if response.status_code == 200:
@@ -31,4 +30,34 @@ def get_current_weather(lat, lon):
                 "time": current.get("time")
             }
     return None
+
+def get_daily_forecast(lat,lon):
+    url = (f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&daily=weather_code,temperature_2m_max,temperature_2m_min")
+    response = requests.get(url)
+    if response.status_code == 200:
+        data=response.json()
+        daily = data.get("daily", {})
+        return {
+            "dates": daily.get("time", []),
+            "weather_code": daily.get("weather_code", []),
+            "temp_max": daily.get("temperature_2m_max", []),
+            "temp_min": daily.get("temperature_2m_min", []),
+        }
+    else:
+        return None
+        
+def get_hourly_forecast(lat,lon):
+    url = (f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&hourly=,temperature_2m,weather_code")
+    response = requests.get(url)
+    if response.status_code == 200:
+        data=response.json()
+        daily = data.get("hourly", {})
+        return {
+            "dates": daily.get("time", []),
+            "weather_code": daily.get("weather_code", []),
+            "temp_max": daily.get("temperature_2m", [])
+        }
+    else:
+        return None
+    
 
