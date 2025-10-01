@@ -72,7 +72,7 @@ else:
 # ---------------------------
 # CURRENT WEATHER SECTION
 # ---------------------------
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([0.6, 0.4])
 with col1:
     location = name + ", " + country
     date = datetime.fromisoformat(time)
@@ -98,20 +98,36 @@ with col1:
     st.write("")
     row1 = st.columns(4)
     with row1[0]:
-        st.metric(label="Feels Like", value=f"{feels_like}°")
+        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;">
+                <div style="font-weight: 600;">Feels Like</div>
+                <div style="font-size: 24px;margin-top: 20px">{feels_like}°</div>
+                </div>""",unsafe_allow_html=True)
     with row1[1]:
-        st.metric(label="Humidity", value=f"{humidity}%")
+        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;">
+                <div style="font-weight: 600;">Humidity</div>
+                <div style="font-size: 24px;margin-top: 20px">{humidity}%</div>
+                </div>""",unsafe_allow_html=True)
     with row1[2]:
-        st.metric(label="Wind", value=f"{wind_speed} km/h")
+        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;">
+                <div style="font-weight: 600;">Wind</div>
+                <div style="font-size: 24px;margin-top: 20px">{wind_speed} km/h</div>
+                </div>""",unsafe_allow_html=True)
     with row1[3]:
-        st.metric(label="Precipitation", value=f"{precipitation} mm")
+        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;">
+                <div style="font-weight: 600;">Precipitation</div>
+                <div style="font-size: 24px;margin-top: 20px">{precipitation} mm</div>
+                </div>""",unsafe_allow_html=True)
+
+# ---------------------------
+# DAILY WEATHER SECTION
+# ---------------------------
 
     st.write("")
     st.markdown("<h4>Daily forecast</h4>", unsafe_allow_html=True)
     d_forecast = get_daily_forecast(lat, lon)
 
     if d_forecast:
-        row2 = st.columns(7)
+        row2 = st.columns(7)    
         for i in range(7):
             with row2[i]:
                 day = datetime.fromisoformat(d_forecast["dates"][i]).strftime("%a")
@@ -121,11 +137,11 @@ with col1:
 
                 st.markdown(
                     f"""
-                    <div style="background-color: #1e1e1e; padding: 15px; border-radius: 12px; text-align: center; color: white;">
+                    <div style="background-color: #262540; padding: 15px;  min-height: 180px; border-radius: 12px; text-align: center; color: white;">
                         <div style="font-weight: 600; font-size: 16px; margin-bottom: 20px;">{day}</div>
-                        <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 20px;">
-                            <span style="color: #FF4B4B;">{temp_max}°</span>
-                            <span style="color: #4BA3FF;">{temp_min}°</span>
+                        <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 80px;">
+                            <span style="color: white;">{temp_max}°</span>
+                            <span style="color: white;">{temp_min}°</span>
                         </div>
                     </div>
                     """,
@@ -149,10 +165,12 @@ with col2:
 
     days = list(hourly_by_day.keys())
 
-    st.write("")
-    with st.container(border=True):
+    
+    with st.container(border=True, height=650):
+        st.markdown(f""" <div style="background-color: #3C3B5E;></div>""",unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         with col1:
+            st.write("")
             st.markdown("<h4>Hourly Forecast</h4>", unsafe_allow_html=True)
 
         with col2:
@@ -165,26 +183,12 @@ with col2:
             with st.container():
                 st.markdown(
                     f"""
-                    <div style="background-color: #1e1e1e; 
-                                padding: 12px; 
-                                border-radius: 12px; 
-                                text-align: center; 
-                                color: white; 
-                                width: 900px;
-                                height: 40px;
-                                margin: auto;">
-                        <!-- Time -->
-                        <div style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">
-                            {h["hour"]}
-                        </div>
-                        <!-- Temperature -->
-                        <div style="font-size: 16px; color: #FFDD57;">
-                            {h["temp"]}°
-                        </div>
+                    <div style="background-color: #302F4A; padding: 12px; border-radius: 12px; text-align: center; color: white; width: 660px;height: 70px;margin-bottom: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; color: white; padding: 8px; border-radius: 12px;">
+                    <span>{h["hour"]}</span>
+                    <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
-                    """,
-                    unsafe_allow_html=True
-                )
+                    </div>""",unsafe_allow_html=True)
 
 # ---------------------------
 # UNIT SWITCH
