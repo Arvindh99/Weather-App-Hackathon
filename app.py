@@ -43,6 +43,33 @@ weather_icons = {
 
 st.set_page_config(page_title="Weather Now | Frontend Mentor",page_icon="☀️",layout="wide")
 
+st.markdown("""
+<style>
+/* Mobile styles (screen width ≤ 768px) */
+@media (max-width: 768px) {
+    .block-container {
+        padding: 0.5rem !important;
+    }
+    h1, h2, h3 {
+        font-size: 1.2rem !important;
+        text-align: center;
+    }
+    .stButton button {
+        width: 100% !important;
+    }
+}
+
+/* Desktop styles (screen width ≥ 769px) */
+@media (min-width: 769px) {
+    .block-container {
+        padding: 2rem !important;
+    }
+    h1, h2, h3 {
+        font-size: 2rem !important;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
 
 col1, col2, col3, col4, col5 = st.columns([1, 1, 3, 1, 1])
 
@@ -272,6 +299,7 @@ with col3:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
