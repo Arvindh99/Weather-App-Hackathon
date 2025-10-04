@@ -25,10 +25,32 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Solution](https://github.com/Arvindh99/Weather-App-Hackathon/tree/main)
+- Live Site URL: [Live App](https://weather-app-challenge.streamlit.app/)
 
 ## My process
 
 ### Built with
+
+- Python – Core language for logic and API requests
+- Streamlit – Framework for building the interactive weather dashboard
+- streamlit-extras – For additional UI enhancements (like containers, spacing, etc.)
+- HTML and CSS Custom Components
+- Open-Meteo API – Free weather API used for real-time and forecast data
+
+### What I learned
+
+Building this project helped me strengthen both Python and Streamlit skills. Some key takeaways:
+
+- API Integration – Fetching real-time, daily, and hourly forecasts from Open-Meteo
+- Dynamic UI in Streamlit – Using st.columns, st.container, and custom HTML/CSS inside st.markdown
+- Custom Weather Icons – Mapping Open-Meteo weather codes to icons and displaying them dynamically
+- Unit Conversion – Switching between Metric (°C) and Imperial (°F) using a helper function
+- Date & Time Formatting – Converting ISO date strings into friendly formats like Sat, Oct 5 and 3 AM
+- Reusable Components – Structuring code for current weather, daily forecast, and hourly forecast separately
+
+## Author
+
+- Website - [Portfolio](https://arvindh-portfolio.lovable.app/)
+- Frontend Mentor - [Arvindh](https://www.frontendmentor.io/profile/Arvindh99)
 
