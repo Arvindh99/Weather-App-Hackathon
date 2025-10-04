@@ -1,4 +1,6 @@
 [theme]
-primaryColor = "#4658D9"         # Your button/slider/selection color
-backgroundColor = "#02012C"      # Main background
+primaryColor = "#4658D9"       
+backgroundColor = "#02012C"   
 font = "DM Sans" 
+textColor = "#FAFAFA"
+secondaryBackgroundColor = "#262540"
