@@ -44,6 +44,7 @@ weather_icons = {
 
 st.set_page_config(page_title="Weather Now | Frontend Mentor",page_icon="☀️",layout="wide")
 
+
 col1, col2, col3, col4, col5 = st.columns([1, 1, 3, 1, 1])
 
 with col2:
@@ -272,12 +273,6 @@ with col3:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
-
-
-
-
-
-
 
 
 
