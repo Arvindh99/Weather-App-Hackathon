@@ -1,30 +1,36 @@
 import streamlit as st
 import importlib
-from st_screen_stats import WindowQueryHelper
+import streamlit.components.v1 as components
 
-st.set_page_config(page_title="Responsive App", layout="wide")
+st.set_page_config(page_title="Responsive Weather App", layout="wide")
 
-# --- Setup Helper ---
-helper = WindowQueryHelper()
+# Inject JavaScript to detect screen width and store it in query params
+components.html(
+    """
+    <script>
+        const width = window.innerWidth;
+        const view = width < 768 ? "mobile" : "desktop";
+        const current = new URLSearchParams(window.location.search).get("view");
 
-# Detect screen size in real-time
-is_mobile = helper.maximum_window_size(max_width=768, key="window_mobile")
+        if (current !== view) {
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set("view", view);
+            window.location.replace(newUrl.toString());
+        }
+    </script>
+    """,
+    height=0,
+)
 
-# Optional: for debugging
-# st.write("Mobile:", is_mobile)
+# Get current view from query params
+view = st.query_params.get("view", ["desktop"])[0]
 
-# --- Switch Between Views ---
-if is_mobile["status"]:
-    module_name = "mobile_app"
-else:
-    module_name = "desktop_app"
-
+# Dynamically import the correct view
 try:
-    app = importlib.import_module(module_name)
-    if hasattr(app, "render"):
-        app.render()
+    module = importlib.import_module("mobile_app" if view == "mobile" else "desktop_app")
+    if hasattr(module, "render"):
+        module.render()
     else:
-        st.error(f"⚠️ '{module_name}' does not have a render() function.")
+        st.error(f"⚠️ {view}_app.py missing render() function.")
 except Exception as e:
-    st.error(f"Error loading {module_name}: {e}")
-    st.exception(e)
+    st.error(f"Error loading {view}_app: {e}")
