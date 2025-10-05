@@ -21,7 +21,7 @@ def handle_msg(msg):
     if msg.type == "setWidth":
         st.session_state.screen_width = msg.width
 
-st.query_params()  # triggers rerun when session_state changes
+st.experimental_set_query_params()  # triggers rerun when session_state changes
 
 # --- Step 4: Decide which app to render ---
 if st.session_state.screen_width < 768:
