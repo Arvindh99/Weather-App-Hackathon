@@ -6,7 +6,7 @@ from api import get_lat_lon, get_current_weather, get_daily_forecast, get_hourly
 import base64
 
 def render():
-    images_path = "C:/Users/AVignesh/Downloads/Weather-App-Hackathon-main/assets/images/"
+    images_path = "assets/images/"
     
     weather_icons = {
         0: images_path + "icon-sunny.webp",         
@@ -279,6 +279,7 @@ def render():
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
