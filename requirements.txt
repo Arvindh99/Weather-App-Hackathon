@@ -2,5 +2,4 @@ streamlit
 streamlit_extras
 datetime
 streamlit-screen-stats
-st-screen-stats 
-streamlit-browser-session-storage 
+st-screen-stats
