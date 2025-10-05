@@ -1,3 +1,6 @@
 streamlit
 streamlit_extras
 datetime
+st-screen-stats 
+streamlit-browser-session-storage 
+streamlit-local-storage
