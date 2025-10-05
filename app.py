@@ -1,29 +1,41 @@
-# main_app.py
 import streamlit as st
-import streamlit.components.v1 as components
+from streamlit_javascript import st_javascript
+from user_agents import parse
+import importlib
+
+st.set_page_config(page_title="Responsive Weather App", layout="wide")
+
+def detect_device():
+    """Detect if the user is using a mobile or tablet device."""
+    user_agent_string = st_javascript("window.navigator.userAgent;")
+    if user_agent_string:
+        ua = parse(user_agent_string)
+        return ua.is_mobile or ua.is_tablet
+    return False
 
 def main():
-    st.set_page_config(layout="wide")
+    # Cache the result so we don't re-run detection unnecessarily
+    if "is_mobile" not in st.session_state:
+        st.session_state.is_mobile = detect_device()
 
-    # JavaScript for device detection and redirection
-    js_code = """
-    <script>
-        function detectDeviceAndRedirect() {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            var isMobile = /android|ipad|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+    if st.session_state.is_mobile:
+        st.session_state.device_type = "mobile"
+    else:
+        st.session_state.device_type = "desktop"
 
-            if (isMobile) {
-                window.location.href = "/mobile_app"; // Redirect to the mobile app
-            } else {
-                window.location.href = "/desktop_app"; // Redirect to the desktop app
-            }
-        }
-        detectDeviceAndRedirect();
-    </script>
-    """
-    components.html(js_code, height=0, width=0)
+    # Dynamically import the correct view
+    try:
+        module_name = (
+            "mobile_app" if st.session_state.device_type == "mobile" else "desktop_app"
+        )
+        module = importlib.import_module(module_name)
 
-    st.markdown("Redirecting to the appropriate version...")
+        if hasattr(module, "render"):
+            module.render()
+        else:
+            st.error(f"⚠️ {module_name}.py is missing a render() function.")
+    except Exception as e:
+        st.error(f"Error loading view: {e}")
 
 if __name__ == "__main__":
     main()
