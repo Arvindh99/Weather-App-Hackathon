@@ -2,4 +2,3 @@ streamlit
 streamlit_extras
 datetime
 streamlit-screen-stats
-st-screen-stats
