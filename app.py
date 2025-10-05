@@ -1,36 +1,20 @@
 import streamlit as st
-from streamlit.components.v1 import html
 import importlib
+from st_screen_stats import WindowQueryHelper
 
-MOBILE_BREAKPOINT = 768  # px cutoff between mobile & desktop
+st.set_page_config(page_title="Responsive App", layout="wide")
 
-# --- 1. Check for ?width= param in query params ---
-params = st.query_params
-width_str = params.get("width", None)
+# --- Setup Helper ---
+helper = WindowQueryHelper()
 
-# --- 2. If not present, inject JS to detect width and reload the app ---
-if width_str is None:
-    html(
-        """
-        <script>
-        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-        const url = new URL(window.location.href);
-        url.searchParams.set("width", width);
-        window.location.replace(url);  // reloads the page once with ?width=<value>
-        </script>
-        """,
-        height=0,
-    )
-    st.stop()  # stop execution until reload happens
+# Detect screen size in real-time
+is_mobile = helper.maximum_window_size(max_width=768, key="window_mobile")
 
-# --- 3. Convert to int safely ---
-try:
-    width = int(width_str[0] if isinstance(width_str, list) else width_str)
-except Exception:
-    width = 1024  # fallback if conversion fails
+# Optional: for debugging
+# st.write("Mobile:", is_mobile)
 
-# --- 4. Dynamically import the right app ---
-if width < MOBILE_BREAKPOINT:
+# --- Switch Between Views ---
+if is_mobile["status"]:
     module_name = "mobile_app"
 else:
     module_name = "desktop_app"
