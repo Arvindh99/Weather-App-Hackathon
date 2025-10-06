@@ -131,10 +131,10 @@ with col2:
     
     if unit_options and unit_options.startswith("Switch to Imperial"):
     # Convert Metric → Imperial
-    temperature = f"{convert_temperature(temperature)}°"
-    feels_like = f"{convert_temperature(feels_like)}°"
-    wind_speed = f"{convert_wind_speed(wind_speed)} mph"
-    precipitation = f"{convert_precipitation(precipitation)} in"
+        temperature = f"{convert_temperature(temperature)}°"
+        feels_like = f"{convert_temperature(feels_like)}°"
+        wind_speed = f"{convert_wind_speed(wind_speed)} mph"
+        precipitation = f"{convert_precipitation(precipitation)} in"
     else:
         # Keep Metric
         temperature = f"{round(temperature)}°"
@@ -282,6 +282,7 @@ with col3:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
