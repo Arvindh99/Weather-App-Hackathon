@@ -40,9 +40,41 @@ weather_icons = {
 }
 
 
-
-
 st.set_page_config(page_title="Weather Now | Frontend Mentor",page_icon="☀️",layout="wide")
+
+# JavaScript to detect screen width
+screen_width = st.session_state.get("screen_width", None)
+width_script = """
+<script>
+const width = window.innerWidth;
+const streamlitDoc = window.parent.document;
+const input = streamlitDoc.querySelector('input[data-testid="stSessionState-screen_width"]');
+if (input) {
+    const lastValue = input.value;
+    if (lastValue !== width.toString()) {
+        const event = new Event('input', { bubbles: true });
+        input.value = width;
+        input.dispatchEvent(event);
+    }
+}
+</script>
+"""
+
+# Inject JS into Streamlit
+st.components.v1.html(width_script, height=0)
+
+# Hidden input for width value
+screen_width = st.text_input("screen_width", value=str(screen_width or ""), label_visibility="collapsed")
+if screen_width:
+    screen_width = int(screen_width)
+    st.session_state["screen_width"] = screen_width
+else:
+    st.session_state["screen_width"] = 1200  # fallback default
+
+# Determine view type
+is_mobile = st.session_state["screen_width"] < 768
+is_tablet = 768 <= st.session_state["screen_width"] < 1024
+
 
 
 col1, col2, col3, col4, col5 = st.columns([1, 1, 3, 1, 1])
@@ -273,6 +305,7 @@ with col3:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
