@@ -163,7 +163,7 @@ if is_mobile:
         st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-bottom: 5px;margin-left: 0.1px"> 
                     <div style="font-weight: 600;">Feels Like</div> <div style="font-size: 24px;margin-top: 20px">{feels_like}</div> </div>""",unsafe_allow_html=True) 
     with row1[0]: 
-        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-left: 200px; margin-bottom: 5px;"> 
+        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-left: 200px;"> 
                     <div style="font-weight: 600;">Humidity</div> <div style="font-size: 24px;margin-top: 20px">{humidity}%</div> </div>""",unsafe_allow_html=True) 
     with row2[0]: 
         st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-bottom: 5px;margin-left:0.1px;"> 
@@ -520,6 +520,7 @@ else:
                             <span style="font-size: 16px;">{h["temp"]}°</span>
                         </div>
                     </div>""",unsafe_allow_html=True)
+
 
 
 
