@@ -113,7 +113,7 @@ def convert_precipitation(mm):
 # CURRENT WEATHER SECTION
 # ---------------------------
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([0.7,0.3])
 
 with col1: 
     location = name + ", " + country
@@ -249,7 +249,7 @@ with col2:
         col1, col2 = st.columns(2)
         with col1:
             add_vertical_space(1)
-            st.markdown("<h6>Hourly forecast</h6>", unsafe_allow_html=True)
+            st.markdown("<h5>Hourly forecast</h5>", unsafe_allow_html=True)
         with col2:
             selected_day = st.selectbox("Select Day", days, index=0, label_visibility="hidden")
     
@@ -273,6 +273,7 @@ with col2:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
