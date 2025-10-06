@@ -248,7 +248,7 @@ with col2:
     with st.container(border=True, height=770):
         col1, col2 = st.columns(2)
         with col1:
-            add_vertical_space(1)
+            add_vertical_space(2)
             st.markdown("<h5>Hourly forecast</h5>", unsafe_allow_html=True)
         with col2:
             selected_day = st.selectbox("Select Day", days, index=0, label_visibility="hidden")
@@ -273,6 +273,7 @@ with col2:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
