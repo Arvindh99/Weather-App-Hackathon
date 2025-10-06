@@ -103,17 +103,17 @@ if unit_options is None:
     
 def convert_temperature(temp_c):
     if unit_options.startswith("Switch to Imperial"):
-        return round(temp_c * 9 / 5 + 32)  # Celsius to Fahrenheit
+        return round(temp_c * 1.8 + 32)  # Celsius to Fahrenheit
     return round(temp_c)  # Metric
 
 def convert_wind_speed(speed_kmh):
     if unit_options.startswith("Switch to Imperial"):
-        return round(speed_kmh / 1.609, 1)  # km/h to mph
+        return round(speed_kmh * 0.6213711922)  # km/h to mph
     return round(speed_kmh)
 
 def convert_precipitation(mm):
     if unit_options.startswith("Switch to Imperial"):
-        return round(mm / 25.4, 2)  # mm to inches
+        return round(mm * 0.0393700787)  # mm to inches
     return round(mm, 1)
 
 # ---------------------------
@@ -129,10 +129,19 @@ with col2:
     #temperature = str(temperature) + "°"
     weather_code =weather_code
     
+    if unit_options and unit_options.startswith("Switch to Imperial"):
+    # Convert Metric → Imperial
     temperature = f"{convert_temperature(temperature)}°"
     feels_like = f"{convert_temperature(feels_like)}°"
-    wind_speed = f"{convert_wind_speed(wind_speed)} {'km/h' if unit_options.startswith('Switch to Metrics') else 'mph'}"
-    precipitation = f"{convert_precipitation(precipitation)} {'mm' if unit_options.startswith('Switch to Metrics') else 'in'}"
+    wind_speed = f"{convert_wind_speed(wind_speed)} mph"
+    precipitation = f"{convert_precipitation(precipitation)} in"
+    else:
+        # Keep Metric
+        temperature = f"{round(temperature)}°"
+        feels_like = f"{round(feels_like)}°"
+        wind_speed = f"{round(wind_speed)} km/h"
+        precipitation = f"{round(precipitation)} mm"
+
     
     with open(images_path + "bg-today-large.svg", "r", encoding="utf-8") as f:
         svg_content = f.read()
@@ -273,6 +282,7 @@ with col3:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
