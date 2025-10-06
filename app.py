@@ -160,16 +160,16 @@ if is_mobile:
     row1 = st.columns([1, 1])
     row2 = st.columns([1, 1])
     with row1[0]: 
-        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-bottom: 5px;margin-left: Auto;margin-right: auto;"> 
+        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-bottom: 5px;margin-left: 0.1px"> 
                     <div style="font-weight: 600;">Feels Like</div> <div style="font-size: 24px;margin-top: 20px">{feels_like}</div> </div>""",unsafe_allow_html=True) 
     with row1[1]: 
-        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-left: 0px; margin-bottom: 5px;"> 
+        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-left: 200px; margin-bottom: 5px;"> 
                     <div style="font-weight: 600;">Humidity</div> <div style="font-size: 24px;margin-top: 20px">{humidity}%</div> </div>""",unsafe_allow_html=True) 
     with row2[0]: 
-        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-bottom: 5px;margin-left: Auto;margin-right: auto;"> 
+        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-bottom: 5px;margin-left:0.1px;"> 
                     <div style="font-weight: 600;">Wind</div> <div style="font-size: 24px;margin-top: 20px">{wind_speed}</div> </div>""",unsafe_allow_html=True) 
     with row2[1]: 
-        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-left: 0px;margin-bottom: 5px;"> 
+        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-left: 200px;margin-bottom: 5px;"> 
                     <div style="font-weight: 600;">Precipitation</div> <div style="font-size: 24px;margin-top: 20px">{precipitation}</div> </div>""",unsafe_allow_html=True)
     
     # ---------------------------
@@ -520,6 +520,7 @@ else:
                             <span style="font-size: 16px;">{h["temp"]}°</span>
                         </div>
                     </div>""",unsafe_allow_html=True)
+
 
 
 
