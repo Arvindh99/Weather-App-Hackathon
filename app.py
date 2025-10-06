@@ -142,7 +142,7 @@ with col1:
         encoded_icon = base64.b64encode(image_file.read()).decode()
     
     st.markdown(
-        f"""<div style="position: relative; color: white";>
+        f"""<div style="position: relative; color: white;max-width:100%;">
             {svg_content}
             <div style="position: absolute; top: 30%; left: 5%;"><h2>{location}</h2></div>
             <div style="position: absolute; top: 60%; left: 5%;"><p>{date}</p></div>
@@ -273,6 +273,7 @@ with col2:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
