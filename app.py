@@ -150,31 +150,54 @@ with col1:
     with open(icon_path, "rb") as image_file:
         encoded_icon = base64.b64encode(image_file.read()).decode()
     
-    st.markdown(
-        f"""<div style="position: relative; color: white;max-width:100%;width: 100%;overflow: hidden;color: white;">
-            {svg_content}
-            <div style="position: absolute; top: 30%; left: 5%;"><h2>{location}</h2></div>
-            <div style="position: absolute; top: 60%; left: 5%;"><p>{date}</p></div>
-            <div style="position: absolute; top: 35%; left: 70%;display: flex; align-items: center;"">
-            <img src="data:image/webp;base64,{encoded_icon}" style="width:48px; height:48px; margin-right: 10px;">
-            <h1 style="font-size: 48px;">{temperature}</h1></div>
-        </div>""",unsafe_allow_html=True)
-
-    add_vertical_space(4)
-    row1 = st.columns([1.6, 1.6, 1.6, 1.6])
-    with row1[0]: 
-        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;"> 
-                    <div style="font-weight: 600;">Feels Like</div> <div style="font-size: 24px;margin-top: 20px">{feels_like}</div> </div>""",unsafe_allow_html=True) 
-    with row1[1]: 
-        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-left: 0.1px"> 
-                    <div style="font-weight: 600;">Humidity</div> <div style="font-size: 24px;margin-top: 20px">{humidity}%</div> </div>""",unsafe_allow_html=True) 
-    with row1[2]: 
-        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-left: 0.1px"> 
-                    <div style="font-weight: 600;">Wind</div> <div style="font-size: 24px;margin-top: 20px">{wind_speed}</div> </div>""",unsafe_allow_html=True) 
-    with row1[3]: 
-        st.markdown(f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px;width: 165px;margin-left: 0.1px"> 
-                    <div style="font-weight: 600;">Precipitation</div> <div style="font-size: 24px;margin-top: 20px">{precipitation}</div> </div>""",unsafe_allow_html=True)
-
+    if is_mobile:
+        st.markdown(
+            f"""<div style="position: relative; text-align: center; color: white;">
+                {svg_content}
+                <div style="position: absolute; top: 10%; left: 40%;"><h2>{location}</h2></div>
+                <div style="position: absolute; top: 40%; left: 44%;"><p>{date}</p></div>
+                <div style="position: absolute; top: 50%; left: 45%; display: flex; align-items: center;">
+                    <img src="data:image/webp;base64,{encoded_icon}" style="width:48px; height:48px; margin-right: 10px;">
+                    <h1 style="font-size: 48px;">{temperature}</h1>
+                </div>
+            </div>""", unsafe_allow_html=True)
+        add_vertical_space(2)
+        # Mobile cards (2x2)
+        row1 = st.columns([1, 1])
+        row2 = st.columns([1, 1])
+        rows = [row1, row2]
+        values = [("Feels Like", feels_like), ("Humidity", f"{humidity}%"), ("Wind", wind_speed), ("Precipitation", precipitation)]
+        for i, row in enumerate(rows):
+            for j, col in enumerate(row):
+                title, val = values[i*2+j]
+                col.markdown(
+                    f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px; width: 165px; margin-bottom: 5px; margin-left: {'auto' if j==0 else '0.1px'};"> 
+                        <div style="font-weight: 600;">{title}</div> 
+                        <div style="font-size: 24px; margin-top: 20px;">{val}</div> 
+                    </div>""",unsafe_allow_html=True)
+    else:
+        st.markdown(
+            f"""<div style="position: relative; color: white;">
+                {svg_content}
+                <div style="position: absolute; top: 30%; left: 5%;"><h2>{location}</h2></div>
+                <div style="position: absolute; top: 60%; left: 5%;"><p>{date}</p></div>
+                <div style="position: absolute; top: 35%; left: 70%; display: flex; align-items: center;">
+                    <img src="data:image/webp;base64,{encoded_icon}" style="width:48px; height:48px; margin-right: 10px;">
+                    <h1 style="font-size: 48px;">{temperature}</h1>
+                </div>
+            </div>""", unsafe_allow_html=True)
+        add_vertical_space(4)
+        # Desktop cards (1x4)
+        row = st.columns([1.6, 1.6, 1.6, 1.6])
+        values = [("Feels Like", feels_like), ("Humidity", f"{humidity}%"), ("Wind", wind_speed), ("Precipitation", precipitation)]
+        for i, col in enumerate(row):
+            title, val = values[i]
+            col.markdown(
+                f"""<div style="background-color: #262540; color: white; padding: 20px; border-radius: 12px; text-align: left; min-height: 118px; width: 165px; margin-left: {0.1 if i>0 else 0}px;"> 
+                    <div style="font-weight: 600;">{title}</div> 
+                    <div style="font-size: 24px; margin-top: 20px;">{val}</div> 
+                </div>""",
+                unsafe_allow_html=True)
 # ---------------------------
 # DAILY WEATHER SECTION
 # ---------------------------
