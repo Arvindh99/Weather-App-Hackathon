@@ -58,10 +58,18 @@ col1, col2, col3 = st.columns([1, 3, 1])
 with col1:
     st.write("")
     st.image(images_path + "logo.svg")
-    add_vertical_space(18)
+    is_mobile = is_mobile_device()
+    if is_mobile:
+        add_vertical_space(1)
+    else:
+        add_vertical_space(18)
 
 with col2:
-    add_vertical_space(8)
+    is_mobile = is_mobile_device()
+    if is_mobile:
+        add_vertical_space(1)
+    else:
+        add_vertical_space(8)
     st.markdown("<h1 style='text-align: center;'>How's the sky looking today?</h1>", unsafe_allow_html=True)
 
     search_grid = grid([0.8,0.2], vertical_align="bottom")
@@ -154,9 +162,9 @@ with col1:
         st.markdown(
             f"""<div style="position: relative; text-align: center; color: white;">
                 {svg_content}
-                <div style="position: absolute; top: 10%; left: 40%;"><h2>{location}</h2></div>
-                <div style="position: absolute; top: 40%; left: 44%;"><p>{date}</p></div>
-                <div style="position: absolute; top: 50%; left: 45%; display: flex; align-items: center;">
+                <div style="position: absolute; top: 10%; left: 25%;"><h2>{location}</h2></div>
+                <div style="position: absolute; top: 40%; left: 30%;"><p>{date}</p></div>
+                <div style="position: absolute; top: 50%; left: 30%; display: flex; align-items: center;">
                     <img src="data:image/webp;base64,{encoded_icon}" style="width:48px; height:48px; margin-right: 10px;">
                     <h1 style="font-size: 48px;">{temperature}</h1>
                 </div>
@@ -305,6 +313,7 @@ with col2:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
