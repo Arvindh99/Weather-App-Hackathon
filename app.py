@@ -150,13 +150,13 @@ if is_mobile:
         f"""<div style="position: relative; text-align: center; color: white";>
             {svg_content}
             <div style="position: absolute; top: 10%; left: 20%;"><h2>{location}</h2></div>
-            <div style="position: absolute; top: 40%; left: 24%;"><p>{date}</p></div>
-            <div style="position: absolute; top: 50%; left: 25%;display: flex; align-items: center;"">
+            <div style="position: absolute; top: 40%; left: 26%;"><p>{date}</p></div>
+            <div style="position: absolute; top: 50%; left: 26%;display: flex; align-items: center;"">
             <img src="data:image/webp;base64,{encoded_icon}" style="width:48px; height:48px; margin-right: 10px;">
             <h1 style="font-size: 48px;">{temperature}</h1></div>
         </div>""",unsafe_allow_html=True)
     
-    add_vertical_space(2)
+    add_vertical_space(1)
     row1 = st.columns([1, 1])
     row2 = st.columns([1, 1])
     with row1[0]: 
@@ -202,7 +202,7 @@ if is_mobile:
     
                 cards_html += f"""
                 <div style="background-color: #262540; padding: 20px; min-height: 200px; width: 110px;
-                            border-radius: 12px; text-align: center; color: white;margin-left: 450px">
+                            border-radius: 12px; text-align: center; color: white;margin-left: Auto">
                     <div style="font-weight: 600; font-size: 18px; margin-bottom: 20px;">{day}</div>
                     <div>
                         <img src="data:image/webp;base64,{encoded_icon}" style="width:40px; height:40px;">
@@ -520,6 +520,7 @@ else:
                             <span style="font-size: 16px;">{h["temp"]}°</span>
                         </div>
                     </div>""",unsafe_allow_html=True)
+
 
 
 
