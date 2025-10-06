@@ -149,9 +149,9 @@ if is_mobile:
     st.markdown(
         f"""<div style="position: relative; text-align: center; color: white";>
             {svg_content}
-            <div style="position: absolute; top: 10%; left: 40%;"><h2>{location}</h2></div>
-            <div style="position: absolute; top: 40%; left: 44%;"><p>{date}</p></div>
-            <div style="position: absolute; top: 50%; left: 45%;display: flex; align-items: center;"">
+            <div style="position: absolute; top: 10%; left: 20%;"><h2>{location}</h2></div>
+            <div style="position: absolute; top: 40%; left: 24%;"><p>{date}</p></div>
+            <div style="position: absolute; top: 50%; left: 25%;display: flex; align-items: center;"">
             <img src="data:image/webp;base64,{encoded_icon}" style="width:48px; height:48px; margin-right: 10px;">
             <h1 style="font-size: 48px;">{temperature}</h1></div>
         </div>""",unsafe_allow_html=True)
@@ -520,6 +520,7 @@ else:
                             <span style="font-size: 16px;">{h["temp"]}°</span>
                         </div>
                     </div>""",unsafe_allow_html=True)
+
 
 
 
