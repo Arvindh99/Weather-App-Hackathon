@@ -113,7 +113,7 @@ def convert_precipitation(mm):
 # CURRENT WEATHER SECTION
 # ---------------------------
 
-col1, col2, col3 = st.columns([1, 50, 49])
+col1, col2, col3 = st.columns([1, 50, 20])
 
 with col2: 
     location = name + ", " + country
@@ -262,7 +262,7 @@ with col3:
             st.markdown(
                 f"""
                 <div style="background-color: #302F4A; padding: 12px; border-radius: 12px;
-                            text-align: center; color: white; width: 80%; height: 70px; 
+                            text-align: center; color: white; width: 100%; height: 70px; 
                             margin-bottom: 10px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;
                                 font-size: 14px; font-weight: 600; padding: 8px;">
@@ -273,6 +273,7 @@ with col3:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
