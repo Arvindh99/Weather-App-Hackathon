@@ -204,7 +204,7 @@ if is_mobile:
             for i in row_indices:
                 day = datetime.fromisoformat(d_forecast["dates"][i]).strftime("%a")
     
-                if unit_options and unit_options.startswith("Switch to Imperial"):
+                if unit_options == "Imperial":
                     temp_max = convert_temperature(d_forecast["temp_max"][i])
                     temp_min = convert_temperature(d_forecast["temp_min"][i])
                 else:
@@ -262,7 +262,7 @@ if is_mobile:
             day_str = dt.strftime("%A")
             if day_str not in hourly_by_day:
                 hourly_by_day[day_str] = []
-            if unit_options and unit_options.startswith("Switch to Imperial"):
+            if unit_options == "Imperial":
                 temp = convert_temperature(temp)
             else:
                 temp = temp
@@ -536,6 +536,7 @@ else:
                             <span style="font-size: 16px;">{h["temp"]}°</span>
                         </div>
                     </div>""",unsafe_allow_html=True)
+
 
 
 
