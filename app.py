@@ -5,7 +5,15 @@ from datetime import datetime
 from api import get_lat_lon, get_current_weather, get_daily_forecast, get_hourly_forecast
 import base64
 
+from streamlit_javascript import st_javascript
 
+def is_mobile_device():
+    try:
+        width = st_javascript("""window.innerWidth""")
+        return width is not None and width < 768  # You can tweak 768px breakpoint
+    except:
+        return False
+        
 images_path = "assets/images/"
 
 weather_icons = {
@@ -133,8 +141,9 @@ with col1:
         wind_speed = f"{round(wind_speed)} km/h"
         precipitation = f"{round(precipitation)} mm"
 
-    
-    with open(images_path + "bg-today-large.svg", "r", encoding="utf-8") as f:
+    is_mobile = is_mobile_device()
+    bg_svg_path = images_path + ("bg-today-small.svg" if is_mobile else "bg-today-large.svg")
+    with open(bg_svg_path, "r", encoding="utf-8") as f:
         svg_content = f.read()
     
     icon_path = weather_icons.get(weather_code, images_path + "icon-sunny.webp")
@@ -142,7 +151,7 @@ with col1:
         encoded_icon = base64.b64encode(image_file.read()).decode()
     
     st.markdown(
-        f"""<div style="position: relative; color: white;max-width:100%;">
+        f"""<div style="position: relative; color: white;max-width:100%;width: 100%;overflow: hidden;color: white;">
             {svg_content}
             <div style="position: absolute; top: 30%; left: 5%;"><h2>{location}</h2></div>
             <div style="position: absolute; top: 60%; left: 5%;"><p>{date}</p></div>
@@ -273,6 +282,7 @@ with col2:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
