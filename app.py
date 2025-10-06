@@ -102,20 +102,13 @@ if unit_options is None:
     unit_options = "Switch to Metrics"
     
 def convert_temperature(temp_c):
-    if unit_options.startswith("Switch to Imperial"):
-        return round(temp_c * 1.8 + 32)  # Celsius to Fahrenheit
-    return round(temp_c)  # Metric
+    return round(temp_c * 1.8 + 32)  # Celsius to Fahrenheit
 
 def convert_wind_speed(speed_kmh):
-    if unit_options.startswith("Switch to Imperial"):
-        return round(speed_kmh * 0.6213711922)  # km/h to mph
-    return round(speed_kmh)
-
+    return round(speed_kmh * 0.6213711922)  # km/h to mph
+    
 def convert_precipitation(mm):
-    if unit_options.startswith("Switch to Imperial"):
-        return round(mm * 0.0393700787)  # mm to inches
-    return round(mm, 1)
-
+    return round(mm * 0.0393700787)  # mm to inches
 # ---------------------------
 # CURRENT WEATHER SECTION
 # ---------------------------
@@ -282,6 +275,7 @@ with col3:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
