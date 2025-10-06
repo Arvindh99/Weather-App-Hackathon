@@ -45,14 +45,14 @@ weather_icons = {
 st.set_page_config(page_title="Weather Now | Frontend Mentor",page_icon="☀️",layout="wide")
 
 
-col1, col2, col3, col4, col5 = st.columns([1, 1, 3, 1, 1])
+col1, col2, col3 = st.columns([1, 3, 1])
 
-with col2:
+with col1:
     st.write("")
     st.image(images_path + "logo.svg")
     add_vertical_space(18)
 
-with col3:
+with col2:
     add_vertical_space(8)
     st.markdown("<h1 style='text-align: center;'>How's the sky looking today?</h1>", unsafe_allow_html=True)
 
@@ -95,7 +95,7 @@ with col3:
 # ---------------------------
 # UNIT SWITCH
 # ---------------------------
-with col4:
+with col3:
     unit_options = st.selectbox("Units", ("Metric", "Imperial"), index=0,label_visibility="hidden",placeholder="⚙️ Units")
 
 if unit_options is None:
@@ -113,7 +113,7 @@ def convert_precipitation(mm):
 # CURRENT WEATHER SECTION
 # ---------------------------
 
-col1, col2, col3 = st.columns([16, 50, 34])
+col1, col2, col3 = st.columns([1, 50, 49])
 
 with col2: 
     location = name + ", " + country
@@ -273,4 +273,5 @@ with col3:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
