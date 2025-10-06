@@ -82,7 +82,7 @@ with col3:
     
     weather = get_current_weather(lat, lon)
     if weather:
-        temperature = weather["temperature"]
+        temperature = weather["temperature"].astype(int)
         feels_like = weather["feels_like"]
         humidity = weather["humidity"]
         precipitation = weather["precipitation"]
@@ -275,6 +275,7 @@ with col3:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
