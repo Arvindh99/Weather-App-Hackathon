@@ -82,7 +82,7 @@ with col3:
     
     weather = get_current_weather(lat, lon)
     if weather:
-        temperature = weather["temperature"].astype(int)
+        temperature = weather["temperature"]
         feels_like = weather["feels_like"]
         humidity = weather["humidity"]
         precipitation = weather["precipitation"]
@@ -96,10 +96,10 @@ with col3:
 # UNIT SWITCH
 # ---------------------------
 with col4:
-    unit_options = st.selectbox("Units",("⚙️ Switch to Metrics","⚙️ Switch to Imperial",),label_visibility="hidden",placeholder="⚙️ Units",index=None)
+    unit_options = st.selectbox("Units", ("Metric", "Imperial"), index=0,label_visibility="hidden",placeholder="⚙️ Units")
 
 if unit_options is None:
-    unit_options = "Switch to Metrics"
+    unit_options = "Metric"
     
 def convert_temperature(temp_c):
     return round(temp_c * 1.8 + 32)  # Celsius to Fahrenheit
@@ -122,14 +122,12 @@ with col2:
     #temperature = str(temperature) + "°"
     weather_code =weather_code
     
-    if unit_options and unit_options.startswith("Switch to Imperial"):
-    # Convert Metric → Imperial
+    if unit_options == "Imperial":
         temperature = f"{convert_temperature(temperature)}°"
         feels_like = f"{convert_temperature(feels_like)}°"
         wind_speed = f"{convert_wind_speed(wind_speed)} mph"
         precipitation = f"{convert_precipitation(precipitation)} in"
     else:
-        # Keep Metric
         temperature = f"{round(temperature)}°"
         feels_like = f"{round(feels_like)}°"
         wind_speed = f"{round(wind_speed)} km/h"
@@ -275,6 +273,7 @@ with col3:
                         <span style="font-size: 16px;">{h["temp"]}°</span>
                     </div>
                 </div>""",unsafe_allow_html=True)
+
 
 
 
